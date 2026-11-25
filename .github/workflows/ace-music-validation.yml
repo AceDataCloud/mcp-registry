@@ -19,8 +19,6 @@ jobs:
           go run ./cmd/validate --name ace-music
           go run ./cmd/build --tools ace-music
           go run ./cmd/catalog ace-music
-          grep -q 'acemusic_get_task' catalogs/ace-music/catalog.yaml
-          grep -q 'acemusic_list_models' catalogs/ace-music/catalog.yaml
-      - name: Check that the generated catalog contains the expected tools
-        run: |
-          grep -E '^ *- name: acemusic_' catalogs/ace-music/catalog.yaml
+          grep -q 'mcp/ace-music' catalogs/ace-music/catalog.yaml
+      - name: Discover tools and read local model information using the catalog command
+        run: python3 qa-mcp.py
